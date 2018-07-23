@@ -1,3 +1,4 @@
+
 // Vanilla JavaScript
 
 // const input = document.querySelector('input');
