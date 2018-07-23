@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js</title>
+    <style>
+      li{
+        cursor: pointer;
+      }
+      .completado{
+        text-decoration: line-through;
+      }
+    </style>
+</head>
+<body>
+    <main>
+          
+         <h1>Tareas</h1>
+         <h2>{{ tareasCompletadas.length }} completadas</h2>
+            <ul>
+              <li :class="{ completado: tarea.completado}"
+              @click="completarTarea(tarea)"
+              v-for="tarea in tareas">
+                {{ tarea.titulo }}
+                
+              </li>
+            </ul>
+           
+            <pre>{{ $data }}</pre>
+    </main>
+
+    <div id="app">
+      <h1> {{ mensaje }}</h1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    
+    <script src="main.js"></script>
+
+
+</body>
+</html>
