@@ -1,6 +1,6 @@
 Vue.component('elegir-ganador', {
 	props: ['listado'],
-	template: '#elegir-ganador-template',
+	//template: '#elegir-ganador-template',
 	// template: `<div>
 	// 				<h1 v-if="ganador">El Ganador es {{ ganador }}</h1>
 	// 				<template v-else>

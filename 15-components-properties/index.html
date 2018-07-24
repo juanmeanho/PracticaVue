@@ -9,19 +9,7 @@
 </head>
 <body>
     <main>
-          <elegir-ganador :listado="personas" inline-template> <!--tercera forma dentro del compnente con inline-template-->
-            <div>
-                    <h1 v-if="ganador">El Ganador es {{ ganador }}</h1>
-                    <template v-else>
-                        <h1>Participantes</h1>
-                        <ul>
-                            <li v-for="persona in listado">{{ persona }}</li>
-                        </ul>
-                    </template>
-                    <button @click="elegirGanador">Elelgir Ganador</button>
-            </div>
-          </elegir-ganador>
-
+         <autor :nombre="autor" :edad=99></autor> 
             <pre>{{ $data }}</pre>
     </main>
     <!-- 1º Forma con Tag TEMPLATE en el .js 
