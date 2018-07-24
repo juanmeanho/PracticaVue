@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js</title>
+</head>
+<body>
+    <main>
+      
+      <mis-tareas :listado="tareas"> <!--instancia del template original puede ser diferente cada vez gracias al slot-->
+        <template slot="tarea" scope="datos">
+          <li><h1>{{ datos.title }}</h1></li>
+        </template>
+      </mis-tareas>  
+      <!-- otra instancia -->
+      <mis-tareas :listado="tareas"> 
+        <template slot="tarea" scope="datos">
+          <li><p>{{ datos.title }}</p></li>
+        </template>
+      </mis-tareas> 
+      
+      <!-- otra instancia con emoji-->
+      <mis-tareas :listado="tareas"> 
+        <template slot="tarea" scope="datos">
+          <li>🤣{{ datos.title }}</li>
+        </template>
+      </mis-tareas> 
+
+      <pre>{{ $data }}</pre>
+    </main>
+
+    <!-- Template -->
+
+    <template id="mis-tareas-template">
+        <ul>
+          <slot name="tarea" v-for="tarea in listado" :title="tarea.titulo"></slot>  
+          <!--<li v-for="tarea in listado">
+              {{ tarea.titulo }}
+          </li>-->
+        </ul>
+    </template>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="main.js"></script>
+
+
+
+</body>
+</html>

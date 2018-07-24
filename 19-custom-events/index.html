@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <main>
+      <button @click="mostrarExito = true"></button>
+      <button @click="mostrarError = true"></button>
+      <button @click="mostrarAdvertencia = true"></button>
+
+       <alerta @ocultar="mostrarExito = false" v-show="mostrarExito"
+        tipo="alerta--exito" posicion="alerta--arriba-derecha">
+           <template slot="header">Todo ok</template>
+           <template>Nuevo contenido de alerta</template>
+           <template slot="footer">Puedes continuar normal</template>
+       </alerta> 
+
+       <alerta  @ocultar="mostrarError = false" v-show="mostrarError"
+       tipo="alerta--error" posicion="alerta--arriba-izquierda">
+           <template slot="header">Error Fatal</template>
+           <template>El mundo implosionara</template>
+           <template slot="footer">RIP</template>
+       </alerta>
+
+       <alerta  @ocultar="mostrarAdvertencia = false" v-show="mostrarAdvertencia"
+        tipo="alerta--advertencia" posicion="alerta--abajo-izquierda">
+           <template slot="header">Atencion</template>
+           <template>Nuevo contenido de alerta</template>
+           <template slot="footer">Puedes continuar normal</template>
+       </alerta>  
+
+            <pre>{{ $data }}</pre>
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="main.js"></script>
+
+
+
+</body>
+</html>
