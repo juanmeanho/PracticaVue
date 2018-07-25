@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,17 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue.js</title>
-    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <main>
-        <listado-productos :productos="productos"></listado-productos>
 
+          <!--<input type="text" v-model="contrasena">-->
 
-        
-        <carrito-compra></carrito-compra>
-        <hr>
+          <!--<input type="text" :value="contrasena" @input="contrasena = $event.target.value">-->
 
+          <contrasena v-model="contrasena"></contrasena>    
+    
                   <pre>{{ $data }}</pre>
     </main>
 

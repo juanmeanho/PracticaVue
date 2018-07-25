@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +11,17 @@
 </head>
 <body>
     <main>
-        <listado-productos :productos="productos"></listado-productos>
-
-
+        <button @click="seleccionado = 'lista-tareas'">Tareas</button>
+        <button  @click="seleccionado = 'contacto'">Contacto</button>
+        <button  @click="seleccionado = 'bio'">BIO</button>
         
-        <carrito-compra></carrito-compra>
-        <hr>
+        <component :is="seleccionado"></component>   
+
+        <!--<lista-tareas></lista-tareas>    
+        <contacto></contacto>    
+        <bio></bio>  -->  
+
+
 
                   <pre>{{ $data }}</pre>
     </main>

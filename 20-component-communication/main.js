@@ -1,3 +1,5 @@
+const eventBus = new Vue(); //clase vacia puente
+
 Vue.component('listado-productos', {
 	props: ['productos'],
 	template: `
@@ -5,17 +7,20 @@ Vue.component('listado-productos', {
 				<ul>
 					<li v-for="producto in productos">
 						{{ producto.nombre }} -
-						<small>{{ producto.precio.toFixed(2) }}</small>
-						<button @click="eliminarProducto(producto.precio)"</button>
-						<button @click="anadirProducto(producto.precio)"</button>
+						<small>{{ producto.precio.toFixed(2) }} $</small>
+						<button @click="eliminarProducto(producto.precio)">-</button>
+						<button @click="anadirProducto(producto.precio)">+</button>
 					</li>
 				</ul>
 			</section>`,
 	methods: {
-		anadirProducto(){
-
+		anadirProducto(precio){
+			//console.log(precio);
+			eventBus.$emit('anadir', precio);
 		},
-		eliminarProducto(){
+		eliminarProducto(precio){
+			//console.error(precio);
+			eventBus.$emit('eliminar', precio);
 
 		}
 	}		
@@ -24,15 +29,33 @@ Vue.component('listado-productos', {
 Vue.component('carrito-compra', {
 	template: `
 		<section>
-			<h1> {{ total.toFixed(2) }} </h1>
-			<h1> {{ cantidadProductos }} </h1>  
+			<h1> {{ total.toFixed(2) }} $</h1>
+			<h3> {{ cantidadProductos }} </h3>  
 		</section>`,
-	data(){
+	data() {
 		return {
 			cantidadProductos: 0,
-			total: 0
-		}
+			total: 0,
+			}
+	},
+	created() {
+			eventBus.$on('anadir', (precio) =>{
+				//console.log(precio);
+				if(this.total >= 0){
+					this.total += precio;
+					this.cantidadProductos++;
+				}
+			});
+			eventBus.$on('eliminar', (precio) =>{
+				//console.error(precio);
+				if(this.total > 0){
+					this.total -= precio;
+					this.cantidadProductos--;
+				}
+				
+			});
 	}
+	
 });
 
 new Vue({
