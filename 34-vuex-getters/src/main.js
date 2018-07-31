@@ -1,9 +1,8 @@
-import Vue from 'vue';
-import Tareas from './Tareas.vue';
-import {store} from './store/store';
+import Vue from 'vue'
+import App from './App.vue'
+
+Vue.config.productionTip = false
 
 new Vue({
-    el: '#app',
-    store,
-    render: h => h(Tareas)
-})
+  render: h => h(App)
+}).$mount('#app')
