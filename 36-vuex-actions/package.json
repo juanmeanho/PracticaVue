@@ -1,5 +1,5 @@
 {
-  "name": "34-vuex-getters",
+  "name": "36-vuex-actions",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,8 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "vue": "^2.5.16",
-    "vuex": "^3.0.1"
+    "vue": "^2.5.16"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-rc.5",
