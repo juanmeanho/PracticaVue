@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import contador from './components/Contador.vue';
+import contador from "./components/Contador.vue";
 export default {
-    components: {
-        contador
-    }
-}
+  components: {
+    contador
+  }
+};
 </script>
 
