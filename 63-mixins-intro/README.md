@@ -1,4 +1,4 @@
-# 34-vuex-getters
+# 63-mixins-intro
 
 ## Project setup
 ```
