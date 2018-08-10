@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js</title>
+</head>
+<body>
+    <div id="app">
+        <form @submit.prevent="enviar">
+            <!-- <input type="text" v-model.lazy="formulario"> -->
+            <!-- <input type="number" v-model.number="formulario"> -->
+            <input type="text" v-model.trim.lazy="formulario">
+            <input type="submit" value="Enviar">
+        </form>
+        <pre>{{ $data }}</pre>
+    </div>
+
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                formulario: null
+            },
+            methods: {
+                enviar(){
+                    console.info(typeof this.formulario)
+                }
+            }
+        });
+    </script>
+
+
+</body>
+</html>

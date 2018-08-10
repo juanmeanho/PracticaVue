@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js</title>
+</head>
+<body>
+    <div id="app">
+            
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+    <script>
+       // Initialize Firebase
+       var config = {
+           apiKey: "AIzaSyBGvbyqjFI-imSfaIv6VFsg9ZvTtDp4PPc",
+           authDomain: "vue-firebase-9e767.firebaseapp.com",
+           databaseURL: "https://vue-firebase-9e767.firebaseio.com",
+           projectId: "vue-firebase-9e767",
+           storageBucket: "vue-firebase-9e767.appspot.com",
+           messagingSenderId: "331590226152"
+       };
+          firebase.initializeApp(config);
+        
+
+  //Guardar una referencia a la base de datos
+
+  const db = firebase.database();
+
+
+// Vue stuff
+    new Vue({
+        el: '#app',
+        created() {
+            /*db.ref('chats').push({
+                mensaje: 'Hola, mundo',
+                username: 'juanwmedia',
+            });*/
+            const key = db.ref('chats').push().key;
+            console.log(key);
+            db.ref('chats').child(key).set({
+                mensaje: 'Hola, mundo, desde SET',
+                username: 'juanwmedia',
+            });
+            db.ref('/perfiles')
+                .child('juanwmedia').child('chats').child(key)
+                .set(true);
+        },
+    });
+</script>
+
+
+</body>
+</html>

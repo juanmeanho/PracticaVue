@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js</title>
+</head>
+<body>
+    <div id="app">
+            <button @click="ordenarPorKeySecundaria('color')">Por Color</button>
+            <button @click="ordenarPorKeySecundaria('edad')">Por Edad</button>
+            <button @click="ordenarPorKey">Por Key del nodo</button>
+            <button @click="ordenarPorvalor">Por Valor</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+    <script>
+       // Initialize Firebase
+       var config = {
+           apiKey: "AIzaSyBGvbyqjFI-imSfaIv6VFsg9ZvTtDp4PPc",
+           authDomain: "vue-firebase-9e767.firebaseapp.com",
+           databaseURL: "https://vue-firebase-9e767.firebaseio.com",
+           projectId: "vue-firebase-9e767",
+           storageBucket: "vue-firebase-9e767.appspot.com",
+           messagingSenderId: "331590226152"
+       };
+          firebase.initializeApp(config);
+        
+
+  //Guardar una referencia a la base de datos
+
+  const db = firebase.database();
+  const gatosRef = db.ref('gatos');
+  const gatos = [
+      {nombre: 'Rouco', edad: 5, color: 'blanco y negro'},
+      {nombre: 'Moma', edad: 3, color: 'atigrado'},
+      {nombre: 'Nino', edad: 1, color: 'negro'},
+      {nombre: 'Guizmo', color: 'negro'},
+  ]
+
+
+
+// Vue stuff
+new Vue({
+        el: '#app',
+        created() {
+            gatos.forEach(gato => {
+                gatosRef.child(gato.nombre).set({
+                    edad: gato.edad || null,
+                    color: gato.color
+                });
+            });
+
+            this.gatos.orderByChild('edad').
+                on('child_moved', snapshot =>{
+                    console.warn(snapshot.val());
+                });
+
+        },
+        data: {
+            gatos: gatosRef,
+        },
+        methods: {
+            ordenarPorKeySecundaria(key){
+                this.gatos.orderByChild(key).on('child_added', snapshot => {
+                    console.log(snapshot.key, snapshot.val());
+                });
+            },
+            ordenarPorKey(){
+                this.gatos.orderByKey().on('child_added', snapshot=> {
+                    console.log(snapshot.key, snapshot.val());
+                });
+            },
+            ordenarPorvalor(){
+                this.gatos.orderByValue().on('child_added', snapshot=> {
+                    console.log(snapshot.key, snapshot.val());
+                });
+
+            }
+        }
+    });
+</script>
+
+
+</body>
+</html>
